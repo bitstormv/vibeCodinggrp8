@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Card - Venuka Gunawickrama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            padding: 40px 30px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                0 8px 16px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 16px 48px 0 rgba(31, 38, 135, 0.5),
+                0 12px 24px rgba(0, 0, 0, 0.25),
+                0 4px 12px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 24px rgba(102, 126, 234, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: profilePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes profilePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 24px rgba(102, 126, 234, 0.4),
+                    0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 32px rgba(102, 126, 234, 0.6),
+                    0 6px 16px rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        .profile-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        /* Alternative: Use an actual image */
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .student-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .stream-label {
+            display: inline-block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover .stream-label {
+            background: rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.5);
+            color: #7c85f5;
+        }
+
+        .card-body {
+            margin-bottom: 28px;
+        }
+
+        .bio-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 35px 25px;
+                max-width: 100%;
+            }
+
+            .student-name {
+                font-size: 24px;
+            }
+
+            .bio-text {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .profile-image-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-image-placeholder {
+                font-size: 40px;
+            }
+
+            .action-button {
+                font-size: 13px;
+                padding: 11px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .profile-card {
+                padding: 30px 20px;
+            }
+
+            .student-name {
+                font-size: 22px;
+            }
+
+            .stream-label {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+
+            .bio-text {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .profile-image-container {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 16px;
+            }
+
+            .card-header {
+                margin-bottom: 20px;
+            }
+
+            .card-body {
+                margin-bottom: 20px;
+            }
+
+            .action-button {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+        }
+
+        /* Animation for card entry */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card {
+            animation: slideIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- make the card itself a public link -->
+        <a href="student-profile-card.html" target="_blank" rel="noopener" style="text-decoration:none; color: inherit;">
+        <div class="profile-card">
+            <div class="card-header">
+                <div class="profile-image-container">
+                    <div class="profile-image-placeholder">👤</div>
+                </div>
+                
+                <h1 class="student-name">Venuka Gunawickrama</h1>
+                <span class="stream-label">Computer Science</span>
+            </div>
+
+            <div class="card-body">
+                <p class="bio-text">
+                    Passionate full-stack developer with a keen interest in AI and machine learning. Always eager to learn and collaborate on innovative projects that make a real-world impact.
+                </p>
+            </div>
+        </div>
+        </a>
+    </div>
+</body>
+</html>
